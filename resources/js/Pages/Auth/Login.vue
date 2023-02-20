@@ -13,9 +13,9 @@ defineProps({
 });
 
 const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
+    email: 'test@railways.com',
+    password: 'password',
+    remember: true,
 });
 
 const submit = () => {
@@ -37,7 +37,7 @@ const submit = () => {
             <div>
                 <InputLabel for="email" value="Email" />
 
-                <TextInput
+                <select
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
@@ -45,7 +45,10 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="username"
-                />
+                >
+                    <option selected>test@railways.com</option>
+                    <option >business@railways.com</option>
+                </select>
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>

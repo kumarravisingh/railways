@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Pennant\Feature;
 
 class ProfileController extends Controller
 {
@@ -36,6 +37,14 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        //Feature::activate('business');
+        //Feature::purge('business');
+        /*if($request->user()->high_traffic){
+            Feature::activate('business');
+        }else{
+            Feature::deactivate('business');
+        }*/
+
 
         return Redirect::route('profile.edit');
     }

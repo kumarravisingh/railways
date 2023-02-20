@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'internal',
+        'high_traffic',
     ];
 
     /**
@@ -41,4 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function isInternalTeamMember():bool
+    {
+        return $this->internal == true;
+    }
+
+    function isHighTrafficCustomer():bool
+    {
+        return $this->high_traffic == true;
+    }
 }

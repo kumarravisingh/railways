@@ -3,6 +3,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import Checkbox from "@/Components/Checkbox.vue";
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -15,6 +16,8 @@ const user = usePage().props.auth.user;
 const form = useForm({
     name: user.name,
     email: user.email,
+    internal: user.internal?true:false,
+    high_traffic: user.high_traffic?true:false,
 });
 </script>
 
@@ -58,6 +61,20 @@ const form = useForm({
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+            <div>
+                <div class="block grid grid-cols-3 divide-x mt-4">
+                    <label class="flex md:grid-cols-2 items-center">
+                        <Checkbox name="internal" v-model:checked="form.internal" />
+                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Internal</span>
+                    </label>
+                    <label class="flex md:grid-cols-2 items-center">
+                        <Checkbox name="internal" v-model:checked="form.high_traffic" />
+                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">High Traffic</span>
+                    </label>
+
+                </div>
+
             </div>
 
             <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
